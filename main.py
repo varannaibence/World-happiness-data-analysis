@@ -49,18 +49,14 @@ sns.heatmap(
 axes[0].set_title("Correlation between Key Socio-Economic Factors", fontsize=10)
 axes[0].tick_params(axis='x', rotation=45)
 
-#Right plot Barplot
-sns.barplot(
-    data=df_world_happiness,
-    x='continent',
-    y='happiness_score',
-    ci=None,
-    palette='pastel',
-    ax=axes[1]
-)
-axes[1].set_title("Average Happiness Score by Continent", fontsize=10)
-axes[1].set_xlabel("Continent")
-axes[1].set_ylabel("Average Happiness Score")
+#Right plot Stripplot with Boxplot overlay
+sns.boxplot(data=df_world_happiness, x='continent', y='happiness_score', color='white', fliersize=0, ax=axes[1])
+sns.stripplot(data=df_world_happiness, x='continent', y='happiness_score', jitter=True, alpha=0.6, palette='crest', ax=axes[1])
+
+axes[1].set_title("Individual Country Happiness by Continent", fontsize=11, pad=10)
+axes[1].set_xlabel("")
+axes[1].set_ylabel("Happiness Score")
+sns.despine(ax=axes[1])
 
 plt.tight_layout()
 plt.show()
